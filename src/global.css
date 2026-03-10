@@ -2,7 +2,9 @@
 @import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css";
 
-/* Platform-specific font families */
+/* ──────────────────────────────────────────
+   Platform-specific font families
+   ────────────────────────────────────────── */
 @media android {
   :root {
     --font-mono: monospace;
@@ -21,38 +23,39 @@
   }
 }
 
+/* ──────────────────────────────────────────
+   Theme variables (light / dark)
+   ────────────────────────────────────────── */
 :root {
+  /* Fonts */
   --font-display:
-    Spline Sans, Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji,
-    Segoe UI Symbol, Noto Color Emoji;
-  --font-rounded: 'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif;
+    Spline Sans, Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --font-rounded:
+    "SF Pro Rounded", "Hiragino Maru Gothic ProN", Meiryo, "MS PGothic",
+    sans-serif;
+
+  /* Colors – light */
+  --foreground: #000000;
+  --background: #ffffff;
+  --muted-foreground: #60646c;
 }
 
-/* 亮色模式（默认） */
-:root {
-  --background:          #ffffff;
-  --background-element:  #F0F0F3;
-  --background-selected: #E0E1E6;
-  --text:                #000000;
-  --text-secondary:      #60646C;
-}
-
-/* 暗色模式：跟随系统 color-scheme */
+/* Colors – dark */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background:          #000000;
-    --background-element:  #212225;
-    --background-selected: #2E3135;
-    --text:                #ffffff;
-    --text-secondary:      #B0B4BA;
+    --foreground: #ffffff;
+    --background: #000000;
+    --muted-foreground: #b0b4ba;
   }
 }
 
-/* 将 CSS 变量注册为 Tailwind 令牌（inline：运行时引用，支持动态切换） */
+/* ──────────────────────────────────────────
+   Register CSS variables as Tailwind tokens
+   (inline = runtime reference, supports dynamic switching)
+   ────────────────────────────────────────── */
 @theme inline {
-  --color-background:           var(--background);
-  --color-background-element:   var(--background-element);
-  --color-background-selected:  var(--background-selected);
-  --color-text:                 var(--text);
-  --color-text-secondary:       var(--text-secondary);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --color-muted-foreground: var(--muted-foreground);
 }
