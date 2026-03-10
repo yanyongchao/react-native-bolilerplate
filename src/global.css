@@ -27,3 +27,32 @@
     Segoe UI Symbol, Noto Color Emoji;
   --font-rounded: 'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif;
 }
+
+/* 亮色模式（默认） */
+:root {
+  --background:          #ffffff;
+  --background-element:  #F0F0F3;
+  --background-selected: #E0E1E6;
+  --text:                #000000;
+  --text-secondary:      #60646C;
+}
+
+/* 暗色模式：跟随系统 color-scheme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background:          #000000;
+    --background-element:  #212225;
+    --background-selected: #2E3135;
+    --text:                #ffffff;
+    --text-secondary:      #B0B4BA;
+  }
+}
+
+/* 将 CSS 变量注册为 Tailwind 令牌（inline：运行时引用，支持动态切换） */
+@theme inline {
+  --color-background:           var(--background);
+  --color-background-element:   var(--background-element);
+  --color-background-selected:  var(--background-selected);
+  --color-text:                 var(--text);
+  --color-text-secondary:       var(--text-secondary);
+}

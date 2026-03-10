@@ -8,6 +8,8 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { WebBadge } from '@/components/web-badge';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+import { Text, TextInput } from '@/tw';
+
 
 function getDevMenuHint() {
   if (Platform.OS === 'web') {
@@ -37,6 +39,8 @@ export default function HomeScreen() {
           <ThemedText type="title" style={styles.title}>
             Welcome to&nbsp;Expo90
           </ThemedText>
+          <TextInput></TextInput>
+          <Text className="text-text">xxxxx</Text>
         </ThemedView>
 
         <ThemedText type="code" style={styles.code}>
