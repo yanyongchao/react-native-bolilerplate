@@ -11,8 +11,6 @@ import * as Localization from 'expo-localization';
 import * as SecureStore from 'expo-secure-store';
 import { useCallback, useRef, useState } from 'react';
 import { Alert, Platform, StyleSheet, useColorScheme } from 'react-native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { createMMKV } from 'react-native-mmkv';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Svg, { Circle, Rect } from 'react-native-svg';
@@ -134,11 +132,9 @@ export default function PlaygroundScreen() {
   }, [addLog]);
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <KeyboardProvider>
-        <SafeAreaView
-          style={{ flex: 1, paddingBottom: BottomTabInset + Spacing.three }}
-          className="bg-white dark:bg-black">
+    <SafeAreaView
+      style={{ flex: 1, paddingBottom: BottomTabInset + Spacing.three }}
+      className="bg-white dark:bg-black">
           <ScrollView className="flex-1 px-4">
             <Text className="text-2xl font-bold mt-2 text-neutral-900 dark:text-neutral-100">
               🧪 Playground
@@ -246,8 +242,6 @@ export default function PlaygroundScreen() {
               <Text className="text-sm text-neutral-500 mt-1">下拉关闭</Text>
             </BottomSheetView>
           </BottomSheet>
-        </SafeAreaView>
-      </KeyboardProvider>
-    </GestureHandlerRootView>
+    </SafeAreaView>
   );
 }
