@@ -13,7 +13,7 @@ export default function HomeScreen() {
         <AccountIcon width={80} height={80} fill="#333" />
         {
           new Array(200).fill(0).map((_, i) => (
-            <Text key={i} className="text-2xl">
+            <Text key={i} className="text-2xl text-foreground">
               Hello, Expo Router! {i + 1}
             </Text>
           ))
