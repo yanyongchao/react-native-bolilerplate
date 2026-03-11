@@ -1,3 +1,4 @@
+import { i18nInitPromise } from '@/i18n';
 import '../global.css';
 
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
@@ -19,7 +20,12 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   useEffect(() => {
-    SplashScreen.hideAsync();
+    const init = async () => {
+      await i18nInitPromise;
+      await SplashScreen.hideAsync();
+    };
+
+    void init();
   }, []);
 
   return (

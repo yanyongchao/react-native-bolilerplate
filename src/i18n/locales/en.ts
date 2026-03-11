@@ -1,0 +1,68 @@
+export default {
+  common: {
+    confirm: 'Confirm',
+    cancel: 'Cancel',
+    close: 'Close',
+    loading: 'Loading...',
+    error: 'Something went wrong',
+    retry: 'Retry',
+    save: 'Save',
+    delete: 'Delete',
+    edit: 'Edit',
+    done: 'Done',
+    search: 'Search',
+    settings: 'Settings',
+    language: 'Language',
+    chinese: '中文',
+    english: 'English',
+    followSystem: 'Follow System',
+  },
+  tabs: {
+    home: 'Home',
+    explore: 'Explore',
+    playground: 'Playground',
+  },
+  home: {
+    greeting: 'Hello, Expo Router! {{index}}',
+  },
+  explore: {
+    title: 'Explore',
+    subtitle: 'This starter app includes example\ncode to help you get started.',
+    docs: 'Expo documentation',
+    learnMore: 'Learn more',
+    fileRouting: 'File-based routing',
+    fileRoutingDesc:
+      'This app uses Expo Router for file-based routing. Just like Next.js, you can create a new file under the ',
+    platformSupport: 'Android, iOS, and web support',
+    platformSupportDesc:
+      'You can open this project on Android, iOS, and the web. To open the web version, press ',
+    platformSupportKey: 'w',
+    images: 'Images',
+    imagesDesc: 'For static images, you can use the',
+    themeComponents: 'Light and dark mode components',
+    themeComponentsDesc:
+      'This template has light and dark mode support. The useColorScheme() hook lets you inspect what the user\'s current color scheme is, and so you can adjust UI colors accordingly.',
+    animations: 'Animations',
+    animationsDesc:
+      'This template includes an example of an animated component. The src/components/ui/collapsible.tsx component uses the powerful react-native-reanimated library to animate opening this hint.',
+  },
+  playground: {
+    title: '🧪 Playground',
+    subtitle: 'Native module verification · {{count}} modules',
+    sections: {
+      svg: 'SVG',
+      actions: 'Feature Tests',
+      linearGradient: 'LinearGradient',
+      blurGlass: 'Blur & Glass',
+      flashList: 'FlashList',
+      log: 'Log Output',
+      language: 'Language',
+    },
+    logPlaceholder: 'Tap buttons above to see output...',
+    bottomSheetTitle: '@gorhom/bottom-sheet ✓',
+    bottomSheetHint: 'Pull down to close',
+    cameraNoPermission: 'Permission Denied',
+    cameraPermissionMsg: 'Camera permission is required for preview',
+    currentLanguage: 'Current: {{lang}}',
+  },
+} as const;

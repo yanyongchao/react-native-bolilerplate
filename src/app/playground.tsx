@@ -10,16 +10,16 @@ import { LinearGradient } from 'expo-linear-gradient';
 import * as Localization from 'expo-localization';
 import * as SecureStore from 'expo-secure-store';
 import { useCallback, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Alert, Platform, StyleSheet, useColorScheme } from 'react-native';
-import { createMMKV } from 'react-native-mmkv';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Svg, { Circle, Rect } from 'react-native-svg';
 
 import AccountIcon from '@/assets/svg-icon/account.svg';
 import { BottomTabInset, Colors, Spacing } from '@/constants/theme';
+import { storage } from '@/lib/storage';
+import { useLanguageStore } from '@/stores/language';
 import { Pressable, ScrollView, Text, View } from '@/tw';
-
-const storage = createMMKV();
 
 const MODULES = [
   'SVG (react-native-svg)',
@@ -64,6 +64,8 @@ export default function PlaygroundScreen() {
   const [cameraPermission, requestCameraPermission] = useCameraPermissions();
   const [showCamera, setShowCamera] = useState(false);
   const bottomSheetRef = useRef<BottomSheet>(null);
+  const { t } = useTranslation();
+  const { language, setLanguage } = useLanguageStore();
 
   const addLog = useCallback((msg: string) => {
     setLog((prev) => [`[${new Date().toLocaleTimeString()}] ${msg}`, ...prev].slice(0, 30));
@@ -108,17 +110,17 @@ export default function PlaygroundScreen() {
   };
 
   const handleMMKV = () => {
-    storage.set('playground.test', 'mmkv_works');
-    const value = storage.getString('playground.test');
+    storage.setItem('playground.test', 'mmkv_works');
+    const value = storage.getItem<string>('playground.test');
     addLog(`MMKV: stored & read "${value}"`);
-    storage.remove('playground.test');
+    storage.removeItem('playground.test');
   };
 
   const handleCamera = async () => {
     if (!cameraPermission?.granted) {
       const perm = await requestCameraPermission();
       if (!perm.granted) {
-        Alert.alert('权限不足', '需要相机权限才能预览');
+        Alert.alert(t('playground.cameraNoPermission'), t('playground.cameraPermissionMsg'));
         return;
       }
     }
@@ -137,10 +139,10 @@ export default function PlaygroundScreen() {
       className="bg-white dark:bg-black">
           <ScrollView className="flex-1 px-4">
             <Text className="text-2xl font-bold mt-2 text-neutral-900 dark:text-neutral-100">
-              🧪 Playground
+              {t('playground.title')}
             </Text>
             <Text className="text-sm text-neutral-500 mb-2">
-              原生模块验证页 · {MODULES.length} 个模块
+              {t('playground.subtitle', { count: MODULES.length })}
             </Text>
 
             {/* SVG */}
@@ -155,7 +157,7 @@ export default function PlaygroundScreen() {
             </View>
 
             {/* Actions */}
-            <SectionTitle>功能测试</SectionTitle>
+            <SectionTitle>{t('playground.sections.actions')}</SectionTitle>
             <View className="flex-row flex-wrap">
               <DemoButton label="📋 Clipboard" onPress={handleClipboard} />
               <DemoButton label="📳 Haptics" onPress={handleHaptics} />
@@ -185,7 +187,7 @@ export default function PlaygroundScreen() {
             </LinearGradient>
 
             {/* BlurView & GlassView */}
-            <SectionTitle>Blur & Glass</SectionTitle>
+            <SectionTitle>{t('playground.sections.blurGlass')}</SectionTitle>
             <View className="flex-row gap-3">
               <View className="flex-1 h-20 rounded-xl overflow-hidden bg-blue-200 dark:bg-blue-800 items-center justify-center">
                 <BlurView intensity={40} style={StyleSheet.absoluteFill} />
@@ -214,10 +216,10 @@ export default function PlaygroundScreen() {
             </View>
 
             {/* Log */}
-            <SectionTitle>日志输出</SectionTitle>
+            <SectionTitle>{t('playground.sections.log')}</SectionTitle>
             <View className="bg-neutral-100 dark:bg-neutral-900 rounded-xl p-3 mb-6 min-h-25">
               {log.length === 0 ? (
-                <Text className="text-sm text-neutral-400">点击上方按钮查看输出...</Text>
+                <Text className="text-sm text-neutral-400">{t('playground.logPlaceholder')}</Text>
               ) : (
                 log.map((l, i) => (
                   <Text key={i} className="text-xs text-neutral-600 dark:text-neutral-400 mb-0.5">
@@ -225,6 +227,34 @@ export default function PlaygroundScreen() {
                   </Text>
                 ))
               )}
+            </View>
+
+            {/* Language Switch */}
+            <SectionTitle>{t('playground.sections.language')}</SectionTitle>
+            <View className="flex-row gap-2 mb-6">
+              {(['zh', 'en', 'system'] as const).map((lang) => (
+                <Pressable
+                  key={lang}
+                  onPress={() => setLanguage(lang)}
+                  className={`px-4 py-2 rounded-lg ${
+                    language === lang
+                      ? 'bg-indigo-500'
+                      : 'bg-neutral-200 dark:bg-neutral-700'
+                  }`}>
+                  <Text
+                    className={`text-sm font-medium ${
+                      language === lang
+                        ? 'text-white'
+                        : 'text-neutral-700 dark:text-neutral-300'
+                    }`}>
+                    {lang === 'zh'
+                      ? t('common.chinese')
+                      : lang === 'en'
+                        ? t('common.english')
+                        : t('common.followSystem')}
+                  </Text>
+                </Pressable>
+              ))}
             </View>
           </ScrollView>
 
@@ -237,9 +267,9 @@ export default function PlaygroundScreen() {
             backgroundStyle={{ backgroundColor: colors.backgroundElement }}>
             <BottomSheetView style={{ padding: 20, alignItems: 'center' }}>
               <Text className="text-base font-semibold text-neutral-900 dark:text-neutral-100">
-                @gorhom/bottom-sheet ✓
+                {t('playground.bottomSheetTitle')}
               </Text>
-              <Text className="text-sm text-neutral-500 mt-1">下拉关闭</Text>
+              <Text className="text-sm text-neutral-500 mt-1">{t('playground.bottomSheetHint')}</Text>
             </BottomSheetView>
           </BottomSheet>
     </SafeAreaView>

@@ -10,25 +10,28 @@ import { SymbolView } from 'expo-symbols';
 import React from 'react';
 import { useColorScheme } from 'react-native';
 
+import { useTranslation } from 'react-i18next';
+
 import { ExternalLink } from './external-link';
 
 import { Colors, MaxContentWidth } from '@/constants/theme';
 import { Pressable, Text, View } from '@/tw';
 
 export default function AppTabs() {
+  const { t } = useTranslation();
   return (
     <Tabs>
       <TabSlot style={{ height: '100%' }} />
       <TabList asChild>
         <CustomTabList>
           <TabTrigger name="home" href="/" asChild>
-            <TabButton>Home</TabButton>
+            <TabButton>{t('tabs.home')}</TabButton>
           </TabTrigger>
           <TabTrigger name="explore" href="/explore" asChild>
-            <TabButton>Explore</TabButton>
+            <TabButton>{t('tabs.explore')}</TabButton>
           </TabTrigger>
           <TabTrigger name="playground" href="/playground" asChild>
-            <TabButton>Playground</TabButton>
+            <TabButton>{t('tabs.playground')}</TabButton>
           </TabTrigger>
         </CustomTabList>
       </TabList>
