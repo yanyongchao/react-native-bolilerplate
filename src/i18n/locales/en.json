@@ -60,5 +60,38 @@
     "cameraNoPermission": "Permission Denied",
     "cameraPermissionMsg": "Camera permission is required for preview",
     "currentLanguage": "Current: {{lang}}"
+  },
+  "auth": {
+    "welcome": {
+      "title": "Welcome",
+      "subtitle": "Your Web3 wallet for a smarter financial life",
+      "login": "Log In",
+      "register": "Create Account"
+    },
+    "login": {
+      "title": "Log In",
+      "emailPlaceholder": "Email address",
+      "passwordPlaceholder": "Password",
+      "submit": "Log In"
+    },
+    "register": {
+      "title": "Create Account",
+      "emailPlaceholder": "Email address",
+      "passwordPlaceholder": "Password",
+      "submit": "Next"
+    },
+    "verify2fa": {
+      "title": "2FA Verification",
+      "subtitle": "Enter the 6-digit code from your authenticator app"
+    },
+    "verifyEmail": {
+      "title": "Verify Email",
+      "subtitle": "Enter the 6-digit code sent to your email"
+    },
+    "inviteCode": {
+      "title": "Invite Code",
+      "placeholder": "Enter your invite code",
+      "submit": "Complete"
+    }
   }
 }

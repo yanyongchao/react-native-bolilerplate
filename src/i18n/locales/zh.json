@@ -60,5 +60,38 @@
     "cameraNoPermission": "权限不足",
     "cameraPermissionMsg": "需要相机权限才能预览",
     "currentLanguage": "当前语言：{{lang}}"
+  },
+  "auth": {
+    "welcome": {
+      "title": "欢迎",
+      "subtitle": "你的 Web3 钱包，开启智慧金融生活",
+      "login": "登录",
+      "register": "注册"
+    },
+    "login": {
+      "title": "登录",
+      "emailPlaceholder": "邮箱地址",
+      "passwordPlaceholder": "密码",
+      "submit": "登录"
+    },
+    "register": {
+      "title": "注册",
+      "emailPlaceholder": "邮箱地址",
+      "passwordPlaceholder": "密码",
+      "submit": "下一步"
+    },
+    "verify2fa": {
+      "title": "两步验证",
+      "subtitle": "请输入验证器应用中的 6 位验证码"
+    },
+    "verifyEmail": {
+      "title": "邮箱验证",
+      "subtitle": "请输入发送到你邮箱的 6 位验证码"
+    },
+    "inviteCode": {
+      "title": "邀请码",
+      "placeholder": "请输入邀请码",
+      "submit": "完成"
+    }
   }
 }

@@ -1,11 +1,8 @@
-import {
-  useCssElement,
-  useNativeVariable as useFunctionalVariable,
-} from "react-native-css";
+import { useCssElement, useNativeVariable as useFunctionalVariable } from 'react-native-css';
 
-import { Link as RouterLink } from "expo-router";
-import Animated from "react-native-reanimated";
-import React from "react";
+import { Link as RouterLink } from 'expo-router';
+import Animated from 'react-native-reanimated';
+import React from 'react';
 import {
   View as RNView,
   Text as RNText,
@@ -14,14 +11,13 @@ import {
   TouchableHighlight as RNTouchableHighlight,
   TextInput as RNTextInput,
   StyleSheet,
-} from "react-native";
+} from 'react-native';
+import { SafeAreaView as RNSafeAreaView } from 'react-native-safe-area-context';
 
 // CSS-enabled Link
-export const Link = (
-  props: React.ComponentProps<typeof RouterLink> & { className?: string }
-) => {
+export const Link = (props: React.ComponentProps<typeof RouterLink> & { className?: string }) => {
   // @ts-ignore - react-native-css complex type
-  return useCssElement(RouterLink, props, { className: "style" });
+  return useCssElement(RouterLink, props, { className: 'style' });
 };
 
 Link.Trigger = RouterLink.Trigger;
@@ -31,9 +27,7 @@ Link.Preview = RouterLink.Preview;
 
 // CSS Variable hook
 export const useCSSVariable =
-  process.env.EXPO_OS !== "web"
-    ? useFunctionalVariable
-    : (variable: string) => `var(${variable})`;
+  process.env.EXPO_OS !== 'web' ? useFunctionalVariable : (variable: string) => `var(${variable})`;
 
 // View
 export type ViewProps = React.ComponentProps<typeof RNView> & {
@@ -41,48 +35,42 @@ export type ViewProps = React.ComponentProps<typeof RNView> & {
 };
 
 export const View = (props: ViewProps) => {
-  return useCssElement(RNView, props, { className: "style" });
+  return useCssElement(RNView, props, { className: 'style' });
 };
-View.displayName = "CSS(View)";
+View.displayName = 'CSS(View)';
 
 // Text
-export const Text = (
-  props: React.ComponentProps<typeof RNText> & { className?: string }
-) => {
-  return useCssElement(RNText, props, { className: "style" });
+export const Text = (props: React.ComponentProps<typeof RNText> & { className?: string }) => {
+  return useCssElement(RNText, props, { className: 'style' });
 };
-Text.displayName = "CSS(Text)";
+Text.displayName = 'CSS(Text)';
 
 // ScrollView
 export const ScrollView = (
   props: React.ComponentProps<typeof RNScrollView> & {
     className?: string;
     contentContainerClassName?: string;
-  }
+  },
 ) => {
   // @ts-ignore - react-native-css complex type
   return useCssElement(RNScrollView, props, {
-    className: "style",
-    contentContainerClassName: "contentContainerStyle",
+    className: 'style',
+    contentContainerClassName: 'contentContainerStyle',
   });
 };
-ScrollView.displayName = "CSS(ScrollView)";
+ScrollView.displayName = 'CSS(ScrollView)';
 
 // Pressable
-export const Pressable = (
-  props: React.ComponentProps<typeof RNPressable> & { className?: string }
-) => {
-  return useCssElement(RNPressable, props, { className: "style" });
+export const Pressable = (props: React.ComponentProps<typeof RNPressable> & { className?: string }) => {
+  return useCssElement(RNPressable, props, { className: 'style' });
 };
-Pressable.displayName = "CSS(Pressable)";
+Pressable.displayName = 'CSS(Pressable)';
 
 // TextInput
-export const TextInput = (
-  props: React.ComponentProps<typeof RNTextInput> & { className?: string }
-) => {
-  return useCssElement(RNTextInput, props, { className: "style" });
+export const TextInput = (props: React.ComponentProps<typeof RNTextInput> & { className?: string }) => {
+  return useCssElement(RNTextInput, props, { className: 'style' });
 };
-TextInput.displayName = "CSS(TextInput)";
+TextInput.displayName = 'CSS(TextInput)';
 
 // AnimatedScrollView
 export const AnimatedScrollView = (
@@ -90,34 +78,32 @@ export const AnimatedScrollView = (
     className?: string;
     contentClassName?: string;
     contentContainerClassName?: string;
-  }
+  },
 ) => {
   // @ts-ignore - react-native-css complex type
   return useCssElement(Animated.ScrollView, props, {
-    className: "style",
-    contentClassName: "contentContainerStyle",
-    contentContainerClassName: "contentContainerStyle",
+    className: 'style',
+    contentClassName: 'contentContainerStyle',
+    contentContainerClassName: 'contentContainerStyle',
   });
 };
 
 // TouchableHighlight with underlayColor extraction
-function XXTouchableHighlight(
-  props: React.ComponentProps<typeof RNTouchableHighlight>
-) {
+function XXTouchableHighlight(props: React.ComponentProps<typeof RNTouchableHighlight>) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { underlayColor, ...style } = (StyleSheet.flatten(props.style) || {}) as any;
   return (
-    <RNTouchableHighlight
-      underlayColor={underlayColor as string | undefined}
-      {...props}
-      style={style}
-    />
+    <RNTouchableHighlight underlayColor={underlayColor as string | undefined} {...props} style={style} />
   );
 }
 
-export const TouchableHighlight = (
-  props: React.ComponentProps<typeof RNTouchableHighlight>
-) => {
-  return useCssElement(XXTouchableHighlight, props, { className: "style" });
+export const TouchableHighlight = (props: React.ComponentProps<typeof RNTouchableHighlight>) => {
+  return useCssElement(XXTouchableHighlight, props, { className: 'style' });
 };
-TouchableHighlight.displayName = "CSS(TouchableHighlight)";
+TouchableHighlight.displayName = 'CSS(TouchableHighlight)';
+
+// SafeAreaView
+export const SafeAreaView = (props: React.ComponentProps<typeof RNSafeAreaView> & { className?: string }) => {
+  return useCssElement(RNSafeAreaView, props, { className: 'style' });
+};
+SafeAreaView.displayName = 'CSS(SafeAreaView)';
