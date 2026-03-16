@@ -17,7 +17,7 @@ SplashScreen.preventAutoHideAsync();
 const queryClient = new QueryClient();
 
 // TODO: 替换为真实的 auth store 逻辑
-const useIsAuthenticated = () => true;
+const useIsAuthenticated = () => false;
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();

@@ -9,8 +9,8 @@ export default function LoginScreen() {
   const { t } = useTranslation();
 
   return (
-    <SafeAreaView className="flex-1 bg-background">
-      <Header title={t('auth.login.title')} useSafeArea={false} />
+    <SafeAreaView className="flex-1 bg-background" edges={['bottom']}>
+      {/* <Header title={t('auth.login.title')} useSafeArea={false} /> */}
       <ScrollView className="flex-1" contentContainerClassName="px-6 gap-4 pb-6" overScrollMode="never">
         <Text className="text-muted-foreground">{t('auth.login.emailPlaceholder')}</Text>
         <Text className="text-muted-foreground">{t('auth.login.passwordPlaceholder')}</Text>
